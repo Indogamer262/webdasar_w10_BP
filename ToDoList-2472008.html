@@ -1,0 +1,135 @@
+<!-- Christian Anthony Hermawan - 2472008 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List - 2472008</title>
+
+    <style>
+        body, html {
+            margin: 0;
+            background-color: rgb(116, 225, 252);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: relative;
+            width: 500px;
+            min-height: 600px;
+            border-radius: 20px;
+            background-color: white;
+            margin: auto;
+            margin-top: 100px;
+            padding: 60px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .field {
+            border: 1px solid rgb(0,73,92);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .btn {
+            border-radius: 8px;
+			cursor: pointer;
+            padding: 6px;
+            border: 1px solid rgb(0,73,92);
+            background-color: rgb(255,227,135)
+        }
+		.btn:hover {
+			background-color: rgb(247,208,81);
+		}
+        #taskTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #taskTable tr td {
+            border: 1px solid black;
+			width: 50%;
+        }
+        .done {
+            padding: 6px;
+            border-radius: 8px;
+			cursor: pointer;
+			display: inline-block;
+        }
+        .done:hover {
+            background-color: green;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>My To-Do List</h1>
+            <form id="input-tugas">
+                <input type="text" class="field" id="newTask" placeholder="Add a new task">
+                <input type="button" class="btn" id="addBtn" value="Add">
+            </form><br>
+            <button id="resetBtn" class="btn">Clear All</button>
+
+            <br><br>
+            <table id="taskTable"></table>
+        </div>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script>
+        let tugas = [];
+        let currentIsi = "";
+
+        $("#addBtn").click(function() {
+            if($("#newTask").val() != "") { 
+                if (tugas.length < 10) {
+                    tugas.push($("#newTask").val());
+                    // console.log("OK, tugas baru: " + $("#newTask").val());
+                    $("#newTask").val("");
+
+                    update();
+                }
+                else {
+                    alert("Maximal of 10 tasks allowed!")
+                }
+            }
+        })
+
+        $("#resetBtn").click(function() {
+            tugas = [];
+            update();
+        });
+
+        function update() {
+            $("#taskTable").empty();
+            for (i = 0; i < tugas.length; i++) {
+                const elemenTugas = $('<tr><td style="text-align: left">' + tugas[i] + '</td><td onclick="deleteSatu('+i+')"><span class="done">✅</span></td></tr>');
+                $("#taskTable").append(elemenTugas);
+            }
+        }
+
+        function deleteSatu(indeks) {
+            // console.log("delete " + indeks);
+            currentIsi = tugas[indeks];
+            
+            tugas.splice(indeks, 1);
+            // console.log(currentIsi);
+            // console.log(tugas);
+
+            update();
+        }
+
+        function penghapus(isian) {
+            return isian != currentIsi;
+        }
+    </script>
+</body>
+</html>

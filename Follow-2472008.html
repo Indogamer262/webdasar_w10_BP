@@ -1,0 +1,128 @@
+<!-- Christian Anthony Hermawan - 2472008 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow the Line - 2472008</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .gameTable {
+            border-collapse: collapse;
+            border: 2px solid gray;
+        }
+        .gameTable tr td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        .jalan-benar {
+            background-color: white;
+            border: none;
+        }
+        .jalan-benar:hover {
+            background-color: lime;
+        }
+
+        .jalan-salah {
+            background-color: gray;
+            border: 2px dashed gray;
+        }
+        .jalan-salah:hover {
+            background-color: red;
+        }
+
+        .start:hover {
+            background-color: deepskyblue;
+        }
+        .finish:hover {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <table class="gameTable">
+        <tr>
+            <td colspan="6" class="finish" style="border: 2px solid gray;"><b>FINISH</b></td>
+        </tr>
+        <tr>
+            <td class="jalan-benar"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+        </tr>
+        <tr>
+            <td class="jalan-benar"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+        </tr>
+        <tr>
+            <td class="jalan-benar"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+        </tr>
+        <tr>
+            <td class="jalan-benar"></td>
+            <td class="jalan-benar"></td>
+            <td class="jalan-benar"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+        </tr>
+        <tr>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-benar"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+        </tr>
+        <tr>
+            <td class="jalan-salah"></td>
+            <td class="jalan-salah"></td>
+            <td class="jalan-benar"></td>
+            <td class="jalan-benar"></td>
+            <td class="jalan-benar"></td>
+            <td class="jalan-benar"></td>
+        </tr>
+        <tr>
+            <td colspan="6" class="start" style="border: 2px solid gray;"><b>START</b></td>
+        </tr>
+    </table>
+
+    <script src="jquery.min.js"></script>
+    <script>
+        let start = false;
+        $(".start").hover(function () {
+            start = true;
+        })
+        $(".jalan-salah").hover(function () {
+            if (start == true) {
+                alert("you lose!");
+                start = false;
+            }
+        })
+        
+        $(".finish").hover(function () {
+            if (start == true) {
+                alert("congrats!");
+                start = false;
+            }
+        })
+    </script>
+</body>
+</html>
