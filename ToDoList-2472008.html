@@ -52,7 +52,7 @@
             border-collapse: collapse;
         }
         #taskTable tr td {
-            border: 1px solid black;
+            /* border: 1px solid black; */
 			width: 50%;
         }
         .done {
@@ -111,7 +111,7 @@
         function update() {
             $("#taskTable").empty();
             for (i = 0; i < tugas.length; i++) {
-                const elemenTugas = $('<tr><td style="text-align: left">' + tugas[i] + '</td><td onclick="deleteSatu('+i+')"><span class="done">✅</span></td></tr>');
+                const elemenTugas = $('<tr><td style="text-align: right">' + tugas[i] + '</td><td onclick="deleteSatu('+i+')"><span class="done">✅</span></td></tr>');
                 $("#taskTable").append(elemenTugas);
             }
         }
